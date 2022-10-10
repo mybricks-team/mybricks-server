@@ -1,0 +1,32 @@
+{
+  "name": "@mybricks/server",
+  "description": "Server for mybricks",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "main": "./index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:watch": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/platform-express": "^8.0.0",
+    "cookie-parser": "^1.4.6",
+    "dayjs": "^1.11.5",
+    "fs-extra": "^10.1.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.2.0",
+    "sqlite3": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/node": "^16.0.0",
+    "nodemon": "^1.19.4",
+    "ts-node": "^8.9.1"
+  }
+}

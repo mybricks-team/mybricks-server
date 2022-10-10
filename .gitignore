@@ -1,0 +1,11 @@
+.git/
+.DS_Store
+node_modules/*
+**/node_modules/
+/tmp
+.tmp
+.history
+**/*.js.map
+_demo_router/
+_demo/
+package-lock.json
