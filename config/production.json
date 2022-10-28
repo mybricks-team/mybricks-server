@@ -1,0 +1,15 @@
+{
+  "environment": "production",
+  "server": {
+    "host": "localhost",
+    "port": 3200
+  },
+  "sqlite3": {
+    "name": "database.sqlite3"
+  },
+  "cryptoKey": "9FB6A5FBC8CD461FF114A1205FB5A56F",
+  "weapp": {
+    "appId": "wx6609cf4d344047e9",
+    "appSec": "dd1f7f2448288d353ec35d17b3259255"
+  }
+}

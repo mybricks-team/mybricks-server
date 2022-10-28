@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+const Database = require('better-sqlite3')
+const config = require('config');
+const fs = require('fs');
+const path = require('path');
+
+const log = require('debug')('server:install');
+
+//数据库初始化
+const dbPath = path.resolve(__dirname, `../${config.get('sqlite3.name')}`);
+const hasDBfile = fs.existsSync(dbPath);
+const db = new Database(dbPath, { verbose: log });
+
+if (!hasDBfile) {
+  db.prepare(
+    `CREATE TABLE user (
+      userId INTEGER PRIMARY KEY AUTOINCREMENT,
+      name text,
+      token text, 
+      email text UNIQUE, 
+      password text, 
+      CONSTRAINT email_unique UNIQUE (email)
+    )`
+  ).run()
+
+  db.prepare(
+    `CREATE TABLE file (
+        fileId INTEGER PRIMARY KEY AUTOINCREMENT,
+        name varchar(100) NOT NULL DEFAULT '',
+        creator_id varchar(50) NOT NULL DEFAULT '',
+        creator_name varchar(50) NOT NULL DEFAULT '',
+        ext_name varchar(100) NOT NULL DEFAULT '',
+        create_time bigint(20) NOT NULL,
+        update_time bigint(20) NOT NULL,
+        updator_id varchar(50) NOT NULL DEFAULT '',
+        updator_name varchar(50) NOT NULL DEFAULT ''
+      )`
+  ).run()
+
+  db.prepare(
+    `CREATE TABLE file_pub (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        file_id bigint(20) NOT NULL DEFAULT '0',
+        version varchar(50) NOT NULL DEFAULT '1.0.0',
+        content mediumtext NOT NULL,
+        content_type varchar(50) NOT NULL DEFAULT '',
+        create_time bigint(20) NOT NULL,
+        update_time bigint(20) NOT NULL,
+        updator_id varchar(50) NOT NULL DEFAULT '',
+        updator_name varchar(50) NOT NULL DEFAULT ''
+      )`
+  ).run()
+}
+
+dbLog('connected database')
+
+module.exports = db
